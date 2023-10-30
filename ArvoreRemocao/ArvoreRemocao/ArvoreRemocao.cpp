@@ -249,26 +249,65 @@ void removerElementoArvore(NO* no, int valor) {
 
 	// caso 1: sem filhos
 	if (atual->dir == NULL && atual->esq == NULL) {
+	
+		if (atual == pai->esq) {
+			pai->esq = NULL;
+		}
+
+		else if (atual == pai->dir) {
+			pai->dir = NULL;
+		}
+
+		else {
+			raiz = NULL;
+		}
+
 		free(atual);
-		pai->esq = NULL;
-		pai->dir = NULL;
+		cout << "Elemento excluído" << endl;
+		return;
 	}
 
 
 	// caso 2: um filho	
 	if (atual->dir != NULL && atual->esq == NULL) {
-		NO* sucessor = atual->dir;
+
+		if (atual == pai->esq) {
+			pai->esq = atual->dir;
+		}
+
+		else if (atual == pai->dir) {
+			pai->dir = atual->dir;
+		}
+
+		else {
+			raiz = atual->dir;
+		}
+
 		free(atual);
-		pai->esq = NULL;
-		pai->dir = sucessor;
+		cout << "Elemento excluído" << endl;
+		return;
+
 	}
 
 	if (atual->dir == NULL && atual->esq != NULL) {
-		NO* sucessor = atual->esq;
+
+		if (atual == pai->esq) {
+			pai->esq = atual->esq;
+		}
+
+		else if (atual == pai->dir) {
+			pai->dir = atual->esq;
+		}
+
+		else {
+			raiz = atual->esq;
+		}
+
 		free(atual);
-		pai->esq = sucessor;
-		pai->dir = NULL;
+		cout << "Elemento excluído" << endl;
+		return;
 	}
+
 
 	// caso 3: dois filhos
 
